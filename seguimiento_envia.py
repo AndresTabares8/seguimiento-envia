@@ -56,11 +56,11 @@ def clasificar(respuesta, guia):
 
 
 def validar_guias(datos):
-    if not isinstance(datos, list) or len(datos) != 19:
-        raise ValueError('Se requieren exactamente 19 guías')
+    if not isinstance(datos, list) or len(datos) != 20:
+        raise ValueError('Se requieren exactamente 20 guías')
     if any(not isinstance(g, str) or not re.fullmatch(r'[0-9]{5,30}', g) for g in datos):
         raise ValueError('Las guías deben ser texto de 5 a 30 dígitos')
-    if len(set(datos)) != 19:
+    if len(set(datos)) != 20:
         raise ValueError('Hay guías repetidas')
     return datos
 
@@ -142,8 +142,8 @@ def main():
     resumen = os.environ.get('GITHUB_STEP_SUMMARY')
     if resumen:
         with open(resumen, 'a', encoding='utf-8') as archivo:
-            archivo.write(f'Lote de 19 referencias. Sin verificar: {fallos}. Consulta el artefacto o Pages.\n')
-    print(f'Lote procesado: 19 referencias. Sin verificar: {fallos}.')
+            archivo.write(f'Lote de {len(guias)} referencias. Sin verificar: {fallos}. Consulta el artefacto o Pages.\n')
+    print(f'Lote procesado: {len(guias)} referencias. Sin verificar: {fallos}.')
 
 
 if __name__ == '__main__':

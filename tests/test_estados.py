@@ -36,12 +36,12 @@ class EstadosTest(unittest.TestCase):
         for respuesta in [None, [], {}, {'guia': '0123456789'}]:
             self.assertEqual(clasificar(respuesta, '0123456789'), 'Sin verificar')
 
-    def test_validar_19_textos_y_ceros(self):
-        guias = [f'{i:010}' for i in range(19)]
+    def test_validar_20_textos_y_ceros(self):
+        guias = [f'{i:010}' for i in range(20)]
         self.assertEqual(validar_guias(guias), guias)
 
     def test_rechazar_duplicados_numeros_y_cantidad(self):
-        for guias in [['12345'] * 19, list(range(19)), ['12345']]:
+        for guias in [['12345'] * 20, list(range(20)), ['12345'], [f'{i:010}' for i in range(19)]]:
             with self.assertRaises(ValueError):
                 validar_guias(guias)
 

@@ -99,7 +99,7 @@ class RastreadorTest(unittest.TestCase):
 
     @patch('seguimiento_envia.time.sleep')
     @patch('seguimiento_envia.consultar', side_effect=ConsultaError('Bloqueo', True))
-    @patch('seguimiento_envia.leer_guias', return_value=[f'{i:012}' for i in range(19)])
+    @patch('seguimiento_envia.leer_guias', return_value=[f'{i:012}' for i in range(20)])
     def test_bloqueo_detiene_el_lote(self, leer, consulta, dormir):
         original = Path.cwd()
         with tempfile.TemporaryDirectory() as carpeta:
@@ -109,6 +109,6 @@ class RastreadorTest(unittest.TestCase):
                     main()
                 self.assertEqual(consulta.call_count, 1)
                 import json
-                self.assertEqual(json.loads(Path('salud.json').read_text())['sin_verificar'], 19)
+                self.assertEqual(json.loads(Path('salud.json').read_text())['sin_verificar'], 20)
             finally:
                 os.chdir(original)
