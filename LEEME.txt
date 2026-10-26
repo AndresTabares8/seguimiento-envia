@@ -1,0 +1,160 @@
+SEGUIMIENTO ENVÍA EN GITHUB ACTIONS
+
+ESTADO DEL TRABAJO
+
+Programa adaptado a tus archivos originales, sin modificarlos.
+La cuenta conectada es AndresTabares8. La conexión no muestra repositorios disponibles.
+No hay despliegue ni horario activo verificados.
+El Excel tiene 20 filas y 19 guías distintas, todas como texto.
+La lectura conserva el orden y quita la fila repetida.
+Las respuestas obtenidas del portal el 26/10/2026 muestran 18 entregadas y una con novedad, G12.
+Esto describe la consulta realizada, no garantiza que ese estado continúe vigente.
+
+CORRECCIÓN DEL PROGRAMA
+
+La versión anterior buscaba frases en toda la página y daba prioridad a Entregado.
+No reconocía novedades. Para G12 elegía En reparto desde un evento anterior.
+La versión nueva consulta la misma dirección oficial de tu programa.
+Verifica el número en su campo propio y lee el primer evento de la línea de tiempo.
+Comprueba que las fechas estén en orden descendente. Dentro de un día conserva el orden del portal.
+Exige un título y una descripción compatibles con la estructura observada.
+Reconoce Entregado, En reparto, Novedad, En ciudad de entrega, En tránsito y Guía generada.
+Si cambia el formato, hay captcha o falta evidencia, muestra Sin verificar.
+No aplica prioridades entre estados ni busca palabras en menús o eventos anteriores.
+No inventa una hora cuando Envía muestra una fecha sin hora.
+La comprobación de En reparto usa el evento histórico real de esa categoría y una página de prueba.
+Ninguna de las 19 guías tenía En reparto como estado vigente en la consulta realizada.
+
+PRIVACIDAD Y OPCIÓN DE ACCESO
+
+La página publica referencias G01 a G19, estados y fechas.
+No publica números de guía, nombres, teléfonos, direcciones ni enlaces individuales.
+Conserva el orden del Excel para relacionar cada referencia con tu guía.
+Pages suele tener acceso público. Un repositorio privado no convierte Pages en una página privada.
+Si necesitas que también los estados requieran tu cuenta, elige repositorio privado y deja Pages desactivado.
+En ese caso abre Actions desde Safari y descarga el artefacto seguimiento-iphone.
+GitHub Free admite Pages desde repositorios públicos. Otros planes admiten repositorios privados.
+No subas guias.xlsx, guias.json, respuestas HTML, registros anteriores ni el reporte original con datos personales.
+.gitignore ayuda al usar Git, pero no impide subir esos archivos desde el navegador.
+Los números se guardan como secreto GUIAS_JSON. No los escribas en registros ni en el código.
+El secreto JSON no garantiza ocultar cada número por separado en los registros.
+La plantilla entrega errores genéricos para evitar esa filtración.
+
+PASO 1. ENTRAR EN TU CUENTA
+
+Abre https://github.com/login
+Usuario de la cuenta conectada: AndresTabares8.
+Si necesitas recuperar el acceso, usa https://github.com/password_reset con tu correo.
+No compartas contraseñas ni códigos de acceso en este chat.
+
+PASO 2. CREAR EL REPOSITORIO
+
+Abre https://github.com/new
+Nombre: seguimiento-envia.
+Elige Public si aceptas que código y referencias de estado sean públicos y quieres Pages con GitHub Free.
+Elige Private si priorizas acceso con tu cuenta y usarás los artefactos de Actions.
+Activa Add a README file para crear la rama main.
+Pulsa Create repository.
+
+PASO 3. SUBIR EL CÓDIGO
+
+Extrae envia-actions.zip en tu PC.
+En el repositorio elige Add file, Upload files.
+Sube seguimiento_envia.py, adaptador_envia.py, preparar_secreto.py y requirements.txt.
+Sube también tests con sus archivos de prueba.
+No subas el ZIP como sustituto del código.
+El explorador de Windows puede ocultar .github y .gitignore.
+Para crear el horario desde GitHub, elige Add file, Create new file.
+Escribe este nombre completo: .github/workflows/seguimiento.yml
+Copia el contenido del archivo del mismo nombre incluido en el paquete.
+Guarda con Commit changes en main.
+Crea .gitignore de la misma forma usando el contenido entregado.
+El horario funciona desde la rama predeterminada, normalmente main.
+
+PASO 4. PREPARAR LAS 19 GUÍAS
+
+Tu Excel original ya usa la columna Número de guía. No necesitas cambiar sus columnas.
+La versión nueva también admite una columna llamada guia.
+Guarda los identificadores como texto. No uses fórmulas.
+Abre una terminal en la carpeta extraída del paquete y ejecuta:
+
+python -m pip install -r requirements.txt
+python preparar_secreto.py "C:/Users/andre/Downloads/programa_seguimiento_envia/seguimiento_envia/guias.xlsx"
+
+Se creará guias.json en esa carpeta.
+Contiene una lista de las 19 guías, sin nombres ni direcciones.
+Abre ese archivo y copia todo su contenido.
+En GitHub abre Settings, Secrets and variables, Actions, Secrets.
+Pulsa New repository secret.
+Nombre: GUIAS_JSON.
+Valor: contenido completo de guias.json.
+Guarda el secreto. No subas ese archivo al repositorio.
+
+PASO 5. PROBAR EL LOTE
+
+Abre Actions, Seguimiento Envía, Run workflow.
+Espera el resultado. El resumen indica cuántas filas quedaron Sin verificar.
+El artefacto seguimiento-iphone contiene index.html y estado.json sin datos personales.
+Si cualquier consulta queda Sin verificar, el paso Comprobar evidencia termina con fallo.
+Eso impide que un error de consulta parezca una entrega confirmada.
+Los resultados generados siguen disponibles aunque ese paso falle.
+La consulta usa tiempos de espera y hasta un reintento ante fallos transitorios.
+Si Envía devuelve 401, 403 o 429, el programa suspende las consultas restantes del lote.
+No evita bloqueos ni captchas. El lote siguiente vuelve a intentarlo según el horario.
+Un fallo antes de generar el reporte no reemplaza la página anterior.
+
+PASO 6. ACTIVAR PAGES SI ELEGISTE ESA OPCIÓN
+
+Abre Settings, Pages, Build and deployment, Source.
+Elige GitHub Actions.
+Abre Settings, Secrets and variables, Actions, Variables.
+Crea PUBLICAR_PAGES con valor true.
+Ejecuta Run workflow otra vez.
+Verifica que el trabajo publicar termine correctamente.
+Abre la URL que devuelve Publicar resultados sin números de guía.
+Compara la fecha y los estados con el artefacto del mismo lote.
+Un lote Sin verificar también se publica si llegó a generar el reporte.
+Así la página muestra el fallo reciente y no conserva un estado anterior como si fuera nuevo.
+No hay confirmación de publicación hasta que el despliegue termine y su URL abra el reporte correcto.
+
+PASO 7. ABRIR EN IPHONE
+
+Abre la URL verificada de Pages desde Safari.
+Pulsa Compartir, Agregar a inicio.
+El icono abre el reporte. Tu PC puede estar apagado porque GitHub ejecuta las consultas.
+El botón Actualizar vista recarga el reporte, no inicia una consulta nueva a Envía.
+La página se recarga cada cinco minutos y avisa cuando el lote supera 75 minutos.
+La fecha del evento corresponde al movimiento mostrado por Envía.
+La fecha de consulta corresponde a la obtención del reporte.
+Si usas repositorio privado sin Pages, entra con tu cuenta en Safari y abre Actions y sus artefactos.
+
+PASO 8. COMPROBAR EL HORARIO
+
+El workflow solicita ejecuciones a los minutos 07 y 37 de cada hora, UTC.
+En Colombia también corresponde a los minutos 07 y 37.
+Después de la prueba manual espera una ejecución con evento schedule.
+Comprueba un lote nuevo y, si usas Pages, una fecha nueva en su URL.
+GitHub puede retrasar ejecuciones o descartar algunas durante periodos de carga.
+En repositorios públicos el horario se desactiva tras 60 días sin actividad del repositorio.
+Si ves datos antiguos, revisa Actions y habilita el workflow cuando corresponda.
+
+CUOTAS Y COSTOS
+
+El horario solicita 48 ejecuciones por día, unas 1440 en 30 días.
+Son 912 consultas diarias para 19 guías, 27360 en 30 días, antes de reintentos.
+No se verificó una cuota pública de Envía para esta frecuencia. Confírmala con el transportador.
+GitHub indica uso gratuito de ejecutores estándar en repositorios públicos y para GitHub Pages.
+Los repositorios privados tienen minutos y almacenamiento según el plan.
+GitHub Free incluye 2000 minutos mensuales para trabajos privados según la tabla consultada.
+Si cada trabajo de consulta tarda dos minutos, 1440 trabajos suman 2880 minutos.
+Mide la duración real y revisa Billing and licensing antes de mantener el horario.
+Los artefactos consumen almacenamiento. Los reportes se retienen dos días y el artefacto de Pages un día.
+El workflow corta la consulta después de diez minutos y la publicación después de cinco.
+El portal puede actualizar sus eventos después del movimiento físico del envío.
+
+FUENTES OFICIALES CONSULTADAS EL 26/10/2026
+
+https://hub.envia.co/landingrastreo/Rastreo/Index
+https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows
+https://docs.github.com/en/billing/concepts/product-billing/github-actions
+https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages

@@ -1,0 +1,6 @@
+guias.xlsx
+guias.json
+resultados/
+site/
+__pycache__/
+.env

@@ -1,0 +1,18 @@
+VERIFICACIÓN DEL PAQUETE
+
+Fecha: 26/10/2026.
+Código y Excel originales inspeccionados, sin modificar sus archivos.
+Lectura compatible con Número de guía: 20 filas, 19 identificadores distintos.
+Se consultaron las 19 guías en el portal oficial, una vez por guía.
+Las 19 respuestas confirmaron el número solicitado en su campo propio.
+El analizador nuevo verificó las respuestas guardadas: 18 Entregado y 1 Novedad.
+G12 tiene una novedad del 26/10/2026 y un evento anterior de reparto del 24/10/2026.
+La fecha de consulta de cada fila consta en estado_actual.json, en UTC.
+El reporte HTML muestra la fecha del evento y la hora inicial del lote en Colombia.
+No hay guía con En reparto vigente en este lote. Esa categoría se probó con un evento real histórico y casos de prueba.
+Pasaron 22 pruebas, incluidos HTTP 429, tiempos de espera, novedades posteriores a entregas y privacidad de la salida.
+Las pruebas se ejecutaron con Python 3.13 en Windows. El workflow solicita Python 3.12 en Ubuntu.
+Los números reales no aparecen en los archivos de salida públicos ni en el ZIP.
+No se incluyeron el Excel, guias.json, nombres, direcciones, respuestas HTML ni registros originales.
+El workflow se preparó. No se ejecutó en GitHub ni se verificó un despliegue de Pages.
+La conexión de GitHub identificó AndresTabares8 y devolvió una lista vacía de repositorios accesibles.
