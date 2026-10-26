@@ -10,7 +10,7 @@ Exige título y descripción compatibles y fechas en orden descendente.
 Si falta evidencia, muestra Sin verificar. No deduce entrega desde eventos anteriores.
 Si Envía responde 401, 403 o 429, suspende las consultas restantes de ese lote.
 
-El workflow solicita un lote a los minutos 07 y 37 de cada hora UTC, que también son 07 y 37 en Colombia.
+El workflow solicita un lote a los minutos 15 y 45 de cada hora UTC, que también son 15 y 45 en Colombia.
 El PC puede estar apagado. GitHub ejecuta las consultas.
 GitHub puede retrasar o descartar ejecuciones en periodos de carga.
 En repositorios públicos el horario se desactiva tras 60 días sin actividad del repositorio.
